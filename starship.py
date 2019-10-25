@@ -23,6 +23,21 @@ class Ship:
 map_height = 10
 map_length = 10
 starchart = [['*'] * map_height] * map_length
+
+def makeShip():
+    created = 0
+    while created == 0:
+        name = str(input('Enter name: '))
+        if len(name) > 0 and len(name) < 100:
+            created = 1
+        elif len(name) == 0:
+            print('Name cannot be empty.')
+        elif len(name) >= 100:
+            print('Name too long (max. 100 characters).')
+        else:
+            print('Name not valid.')
+        # Add confirmation?
+    return(Ship(name))
     
 def makeStarchart(height, width):
     #set max (20?) and min (2?) values
