@@ -38,6 +38,35 @@ def makeShip():
             print('Name not valid.')
         # Add confirmation?
     return(Ship(name))
+
+def statusReport():
+    try:  
+        ship #check ship exists
+    except NameError:
+        print('Ship not found.')
+    else:
+        print('\n' + ship.sname + ship.name + ' | ' + ship.sclass + ' class \n')
+        if ship.alert == 1:
+            print('\t' + '\033[1;30;43m YELLOW ALERT ' + '\x1b[0m')
+        elif ship.alert > 1:
+            print('\t' + '\033[1;37;41m RED ALERT ' + '\x1b[0m') # round values down
+        print('\t' + 'hull integrity:' + '\t' + 'OK      (' + str(ship.hull_integrity*100) + '%)')
+        # option for hull breach
+        if ship.warp_core_status == 0:
+            print('\t' + 'warp core:' + '\t' + 'offline (' + str(ship.warp_core_charge*100) + '%)')
+        else:
+            print('\t' + 'warp core:' + '\t' + 'ONLINE  (' + str(ship.warp_core_charge*100) + '%)')
+        if ship.shields_status == 0:
+            print('\t' + 'shields:'  + '\t' + 'offline (' + str(ship.shields_integrity*100) + '%)')
+        else:
+            print('\t' + 'shields:'  + '\t' + 'ONLINE  (' + str(ship.shields_integrity*100) + '%)')
+        if ship.phaser_status == 0:
+            print('\t' + 'phaser banks:' + '\t' + 'offline')
+        else:
+            print('\t' + 'phaser banks:' + '\t' + 'ONLINE')
+        print('\t' + 'photon torpedoes: ' + str(ship.photon_torpedoes))
+        print('\t' + 'crew complement: ' + str(ship.crew))
+    return
     
 def makeStarchart(height, width):
     #set max (20?) and min (2?) values
